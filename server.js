@@ -12,7 +12,8 @@ app.listen(3000, "192.168.0.102")
 app.get('/stop', Stop); 
   
 function Stop(req, res) { 
-      
+    
+    console.log("Stop")
     // Use child_process.spawn method from  
     // child_process module and assign it 
     // to variable spawn 
