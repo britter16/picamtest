@@ -4,6 +4,7 @@
 
 import RPi.GPIO as GPIO  # using Rpi.GPIO module
 from time import sleep  # import function sleep for delay
+import sys
 
 GPIO.setmode(GPIO.BCM)  # GPIO numbering
 GPIO.setwarnings(False)  # enable warning from GPIO
@@ -19,24 +20,39 @@ sleep(1)  # delay for 1 seconds
 p1 = GPIO.PWM(DIG1, 100)  # set pwm for M1
 p2 = GPIO.PWM(DIG2, 100)  # set pwm for M2
 
-try:
 
-    print("motor_test")
-    GPIO.output(AN1, GPIO.HIGH)  # set AN1 as HIGH, M1B will turn ON
-    GPIO.output(AN2, GPIO.HIGH)  # set AN2 as HIGH, M2B will turn ON
-    p1.start(0)  # set Direction for M1
-    p2.start(0)  # set Direction for M2
-    sleep(2)  # delay for 2 second
+if sys.argv[1] == "Stop":
+    try:
+        print("motor_test")
+        GPIO.output(AN1, GPIO.HIGH)  # set AN1 as HIGH, M1B will turn ON
+        GPIO.output(AN2, GPIO.HIGH)  # set AN2 as HIGH, M2B will turn ON
+        p1.start(0)  # set Direction for M1
+        p2.start(0)  # set Direction for M2
+        sleep(2)  # delay for 2 second
 
-    GPIO.output(AN1, GPIO.LOW)  # set AN1 as LOW, M1B will STOP
-    GPIO.output(AN2, GPIO.LOW)  # set AN2 as HIGH, M2B will STOP
-    p1.start(0)  # Direction can ignore
-    p2.start(0)  # Direction can ignore
-    sleep(3)  # delay for 3 second
+        GPIO.output(AN1, GPIO.LOW)  # set AN1 as LOW, M1B will STOP
+        GPIO.output(AN2, GPIO.LOW)  # set AN2 as HIGH, M2B will STOP
+        p1.start(0)  # Direction can ignore
+        p2.start(0)  # Direction can ignore
 
+    except:  # exit programe when keyboard interupt
+        p1.start(0)  # set speed to 0
+        p2.start(0)  # set speed to 0
 
+elif sys.argv[1] == "Slow":
+    try:
+        print("motor_test")
+        GPIO.output(AN1, GPIO.HIGH)  # set AN1 as HIGH, M1B will turn ON
+        GPIO.output(AN2, GPIO.HIGH)  # set AN2 as HIGH, M2B will turn ON
+        p1.start(100)  # set Direction for M1
+        p2.start(100)  # set Direction for M2
+        sleep(2)  # delay for 2 second
 
-except:  # exit programe when keyboard interupt
-    p1.start(0)  # set speed to 0
-    p2.start(0)  # set speed to 0
-# Control+X to save and exit
+        GPIO.output(AN1, GPIO.LOW)  # set AN1 as LOW, M1B will STOP
+        GPIO.output(AN2, GPIO.LOW)  # set AN2 as HIGH, M2B will STOP
+        p1.start(0)  # Direction can ignore
+        p2.start(0)  # Direction can ignore
+
+    except:  # exit programe when keyboard interupt
+        p1.start(0)  # set speed to 0
+        p2.start(0)  # set speed to 0
