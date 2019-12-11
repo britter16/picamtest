@@ -28,9 +28,10 @@ if sys.argv[1] == "Stop":
         GPIO.output(AN2, GPIO.HIGH)  # set AN2 as HIGH, M2B will turn ON
         p1.start(0)  # set Direction for M1
         p2.start(0)  # set Direction for M2
-        sleep(2)  # delay for 2 second
+        sleep(0.2)  # delay for 2 second
 
         GPIO.output(AN1, GPIO.LOW)  # set AN1 as LOW, M1B will STOP
+	sleep(0.2)
         GPIO.output(AN2, GPIO.LOW)  # set AN2 as HIGH, M2B will STOP
         p1.start(0)  # Direction can ignore
         p2.start(0)  # Direction can ignore
@@ -46,9 +47,10 @@ elif sys.argv[1] == "Slow":
         GPIO.output(AN2, GPIO.HIGH)  # set AN2 as HIGH, M2B will turn ON
         p1.start(100)  # set Direction for M1
         p2.start(100)  # set Direction for M2
-        sleep(2)  # delay for 2 second
+        sleep(0.2)  # delay for 2 second
 
         GPIO.output(AN1, GPIO.LOW)  # set AN1 as LOW, M1B will STOP
+	sleep(0.2)
         GPIO.output(AN2, GPIO.LOW)  # set AN2 as HIGH, M2B will STOP
         p1.start(0)  # Direction can ignore
         p2.start(0)  # Direction can ignore
